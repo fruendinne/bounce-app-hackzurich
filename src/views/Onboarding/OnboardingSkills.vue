@@ -81,7 +81,4 @@
             min-height: 216px;
         }
     }
-    .extramarginoliveoil {
-        margin-top: 20%;
-    }
 </style>

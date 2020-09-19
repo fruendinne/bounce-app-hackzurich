@@ -5,6 +5,8 @@ import Login from "../views/Login";
 import OnboardingSkills from "../views/Onboarding/OnboardingSkills";
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import GetFeedbackDash from "../views/GetFeedbackDash";
+import GiveFeedbackDash from "../views/GiveFeedbackDash";
 
 import store from '../store';
 import Session from '../views/DrawingSession';
@@ -38,6 +40,16 @@ const routes = [
     path: '/session',
     name: 'Session',
     component: Session,
+  },
+  {
+    path: '/getfeedbackdash',
+    name: 'GetFeedbackDash',
+    component: GetFeedbackDash
+  },
+  {
+    path: '/givefeedbackdash',
+    name: 'GiveFeedbackDash',
+    component: GiveFeedbackDash
   },
 ]
 
