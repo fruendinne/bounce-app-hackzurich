@@ -11,6 +11,7 @@ import GiveFeedbackDash from "../views/GiveFeedbackDash";
 import store from '../store';
 import Session from '../views/Session';
 import Horizon from "@/views/NewSession/Horizon";
+import Partner from "@/views/NewSession/Partner";
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,13 @@ const routes = [
     name: 'Horizon',
     component: Horizon
   },
+
+  {
+    path: '/partner',
+    name: 'Partner',
+    component: Partner
+  },
+
   {
     path: '/session',
     name: 'Session',
