@@ -8,6 +8,7 @@ import 'firebase/auth';
 
 import store from '../store';
 import Session from '../views/Session';
+import Horizon from "@/views/Horizon";
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,12 @@ const routes = [
     path: '/onboarding',
     name: 'OnboardingSkills',
     component: OnboardingSkills
+  },
+
+  {
+    path: '/horizon',
+    name: 'Horizon',
+    component: Horizon
   },
   {
     path: '/session',
