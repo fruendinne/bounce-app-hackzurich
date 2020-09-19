@@ -1,5 +1,5 @@
 <template>
-    <v-container class="login-container background-graphic d-flex flex-column">
+    <v-container class="login-container d-flex flex-column">
         <!-- LOGO -->
         <v-row class="justify-center">
             <v-col cols="8">

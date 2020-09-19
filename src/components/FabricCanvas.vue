@@ -78,7 +78,6 @@ export default {
       this.$emit('update', JSON.parse(JSON.stringify(this.fabricInstance)));
     },
     loadCanvas() {
-      console.log(this.session);
       if (this.session && this.session.canvas) {
         this.fabricInstance.loadFromJSON(this.session.canvas);
       }
