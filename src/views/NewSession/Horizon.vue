@@ -6,23 +6,23 @@
                 <h3>choose your creative</h3>
                 <h2>horizon</h2>
 
-          <v-row class="mt-10" justify="space-between">
+          <v-row class="mt-9" justify="space-between">
 
             <v-btn icon width="auto" height="auto">
-              <v-avatar color="quaternary" size="224">
-                <span class="black--text normal">company-wide</span>
+              <v-avatar color="quaternary" size="350">
+                <body class="horizon-text secondary--text normal">company-wide</body>
               </v-avatar>
             </v-btn>
 
             <v-btn icon width="auto" height="auto">
-              <v-avatar color="primary" size="224">
-                <span class="black--text normal">around the globe</span>
+              <v-avatar color="primary" size="350">
+                <span class="horizon-text secondary--text normal">around the globe</span>
               </v-avatar>
             </v-btn>
 
             <v-btn icon width="auto" height="auto">
-              <v-avatar color="thirdiary" size="224">
-                <span class="black--text normal">someone special</span>
+              <v-avatar color="thirdiary" size="350">
+                <span class="horizon-text secondary--text normal">someone special</span>
               </v-avatar>
             </v-btn>
 
@@ -37,20 +37,6 @@
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
-                items: ['UI Design','UX Design', 'Videography', 'Developer', 'Graphic Artist', 'Designer', 'Musician'],
-            }
-        },
-
-        methods: {
-            remove (item) {
-                this.chips.splice(this.chips.indexOf(item), 1)
-                this.chips = [...this.chips]
-            },
-        },
-    }
 </script>
 
 <style lang="scss">
@@ -61,5 +47,10 @@
             margin-bottom: 5rem;
             min-height: 216px;
         }
+    }
+    .horizon-text{
+        font-size: 1rem;
+        font-weight: 300;
+        letter-spacing: 0.345em;
     }
 </style>

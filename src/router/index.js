@@ -7,8 +7,11 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import GetFeedbackDash from "../views/GetFeedbackDash";
 import GiveFeedbackDash from "../views/GiveFeedbackDash";
+import Title from '../views/NewSession/Title';
 
 import store from '../store';
+import Horizon from "@/views/NewSession/Horizon";
+import Partner from "@/views/NewSession/Partner";
 import Session from '../views/DrawingSession';
 import Horizon from "@/views/Horizon";
 
@@ -36,6 +39,13 @@ const routes = [
     name: 'Horizon',
     component: Horizon
   },
+
+  {
+    path: '/partner',
+    name: 'Partner',
+    component: Partner
+  },
+
   {
     path: '/session/',
     name: 'Session',
@@ -62,6 +72,11 @@ const routes = [
     path: '/givefeedbackdash',
     name: 'GiveFeedbackDash',
     component: GiveFeedbackDash
+  },
+  {
+    path: '/sessiontitle',
+    name: 'Title',
+    component: Title
   },
 ]
 

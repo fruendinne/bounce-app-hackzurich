@@ -2,9 +2,9 @@
     <v-container class="login-container background-graphic d-flex flex-column">
         <!-- LOGO -->
         <v-row class="justify-center">
-            <v-col cols="9" class="px-8">
+        <v-col cols="8">
                 <h3>choose your creative</h3>
-                <h2>skills</h2>
+                <h2>partner</h2>
             <v-combobox
                     class="mt-10"
                     :items="items"
@@ -47,7 +47,7 @@
                     :loading="loading"
 
             >
-                Continue
+                Bounce!
             </v-btn>
             </v-row>
         </v-col>
