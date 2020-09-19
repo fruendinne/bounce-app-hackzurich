@@ -4,20 +4,32 @@
 
 <script>
 import { fabric } from 'fabric';
+import Session from '../models/session';
 
 export default {
   name: 'FabricCanvas',
   props: {
-    color: String
+    color: String,
+    session: Session,
   },
   data() {
     return {
       fabricInstance: null,
     };
   },
+  watch: {
+    color() {
+      this.setBrushColor();
+    }
+  },
   mounted() {
     this.fabricInstance = new fabric.Canvas('fabricCanvas');
+    this.fabricInstance.setBackgroundColor(
+        this.$vuetify.theme.currentTheme.background,
+    );
+
     this.setDimensions();
+    this.setBrushColor();
 
     this.fabricInstance.on('object:modified', this.dumpCanvas);
     this.fabricInstance.on('object:added', this.dumpCanvas);
@@ -49,6 +61,13 @@ export default {
 
       this.fabricInstance.add(oval);
     },
+    setDrawingMode(isDrawingMode) {
+      this.fabricInstance.freeDrawingBrush.width = 10;
+      this.fabricInstance.isDrawingMode = isDrawingMode;
+    },
+    setBrushColor() {
+      this.fabricInstance.freeDrawingBrush.color = this.color;
+    },
     setDimensions() {
       this.fabricInstance.setDimensions({
         width: window.innerWidth,
@@ -57,6 +76,12 @@ export default {
     },
     dumpCanvas() {
       this.$emit('update', JSON.parse(JSON.stringify(this.fabricInstance)));
+    },
+    loadCanvas() {
+      console.log(this.session);
+      if (this.session && this.session.canvas) {
+        this.fabricInstance.loadFromJSON(this.session.canvas);
+      }
     }
   },
 };

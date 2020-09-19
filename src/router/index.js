@@ -8,11 +8,11 @@ import 'firebase/auth';
 import GetFeedbackDash from "../views/GetFeedbackDash";
 import GiveFeedbackDash from "../views/GiveFeedbackDash";
 import Title from '../views/NewSession/Title';
+import Horizon from '../views/NewSession/Horizon';
 
 import store from '../store';
-import Session from '../views/Session';
-import Horizon from "@/views/NewSession/Horizon";
 import Partner from "@/views/NewSession/Partner";
+import Session from '../views/DrawingSession';
 
 Vue.use(VueRouter);
 
@@ -46,9 +46,21 @@ const routes = [
   },
 
   {
-    path: '/session',
+    path: '/session/',
     name: 'Session',
     component: Session,
+    meta: {
+      hideAppBar: true,
+    },
+  },
+  {
+    path: '/session/:uuid',
+    name: 'Session',
+    component: Session,
+    meta: {
+      hideAppBar: true,
+    },
+    props: true,
   },
   {
     path: '/getfeedbackdash',
