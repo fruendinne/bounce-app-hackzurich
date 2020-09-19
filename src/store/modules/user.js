@@ -85,7 +85,7 @@ const actions = {
       }
     }
     catch (e) {
-      // commit('SET_ERROR', e);
+      commit('SET_ERROR', e);
     }
   }
 };
