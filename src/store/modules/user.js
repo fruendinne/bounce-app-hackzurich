@@ -73,7 +73,7 @@ const actions = {
         if (state.userProfile.onboardingCompleted) {
           router.replace('/');
         } else {
-          router.replace('/onboarding');
+          router.replace('/onboardingname');
         }
       } else {
         // No user profile yet
@@ -82,7 +82,7 @@ const actions = {
 
         commit('SET_USER_PROFILE', newProfile);
 
-        router.replace('/onboarding');
+        router.replace('/onboardingname');
       }
     }
     catch (e) {
@@ -93,19 +93,11 @@ const actions = {
     const userProfileCollection = firebase.firestore().collection('userProfile');
 
     try {
-      const doc = await userProfileCollection
+      await userProfileCollection
           .doc(state.user.uid)
           .set(payload);
 
-      if (doc.exists) {
-        commit('SET_USER_PROFILE', UserProfile.fromSchema(doc.data()));
-      } else {
-        // No user profile yet
-        const newProfile = new UserProfile();
-        await userProfileCollection.doc(state.user.uid).set(newProfile.toObject());
-
-        commit('SET_USER_PROFILE', newProfile);
-      }
+      commit('SET_USER_PROFILE', UserProfile.fromSchema(payload));
     }
     catch (e) {
       commit('SET_ERROR', e);

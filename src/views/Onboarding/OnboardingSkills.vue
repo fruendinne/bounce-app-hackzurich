@@ -39,13 +39,13 @@
             <v-row no-gutters>
                 <v-spacer></v-spacer>
             <v-btn
-                    to="getfeedbackdash"
                     class="secondary--text"
                     large
                     dark
                     right
 
                     color="primary"
+                    @click="finishOnboarding"
             >
                 Continue
             </v-btn>
@@ -75,7 +75,7 @@ export default {
             'userProfile',
         ]),
         ...mapGetters('onboarding', [
-            'onboardingResults',
+            'onboardingResult',
         ]),
     },
     methods: {
@@ -89,10 +89,11 @@ export default {
             this.selected.splice(this.selected.indexOf(item), 1);
             this.selected = [...this.selected]
         },
-        finishOnboarding() {
+        async finishOnboarding() {
             const userProfile = this.userProfile
-            Object.assign(userProfile, this.onboardingResults);
-
+            Object.assign(userProfile, this.onboardingResult);
+            await this.updateUserProfile(userProfile.toObject());
+            this.$router.push('/');
         }
     },
 }
