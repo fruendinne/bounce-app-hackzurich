@@ -52,13 +52,32 @@
               tile
               @click="saveSession"
           ><v-icon>mdi-floppy</v-icon></v-btn>
+          <v-btn
+              icon
+              tile
+              @click="$refs.fabric.Canvas.clear()"
+          ><v-icon>mdi-delete</v-icon></v-btn>
         </v-toolbar>
       </v-col>
 
       <v-col cols="3" class="justify-end">
-        <v-card>
-          <v-card-text>Hallo</v-card-text>
+        <v-card v-for="(message, index) in messages"
+                :key="index"
+        >
+          <v-card-text>
+            <v-row cols="1" v-text="message"></v-row>
+          </v-card-text>
         </v-card>
+        <v-text-field
+            v-model="message"
+            label="Message"
+            type="text"
+            id="chat"
+            :append-outer-icon="'mdi-send'"
+            @click:append-outer="sendMessage"
+            @keydown.enter="sendMessage"
+        >
+        </v-text-field>
       </v-col>
     </v-row>
   </v-container>
@@ -70,6 +89,9 @@ import 'firebase/firestore';
 
 import FabricCanvas from '../components/FabricCanvas';
 import Session from '../models/session';
+
+const messages = [];
+let i = 0;
 
 export default {
 name: "Session",
@@ -83,6 +105,8 @@ name: "Session",
       color: 'rgba(0,0,0,0.5)',
       drawingMode: false,
       session: null,
+      message:'',
+      messages,
     };
   },
   created() {
@@ -98,6 +122,17 @@ name: "Session",
     }
   },
   methods: {
+    clearMessage () {
+      this.message = ''
+    },
+
+    sendMessage(){
+      messages[i] = document.getElementById("chat").value;
+      console.log(messages[i])
+      i++;
+      this.clearMessage()
+    },
+
     updateCanvas(e) {
       this.session.canvas = e;
       this.saveSession();
@@ -130,6 +165,7 @@ name: "Session",
     }
   }
 }
+
 </script>
 
 <style scoped>
