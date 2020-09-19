@@ -8,4 +8,11 @@ export class UserProfile {
     Object.assign(profile, schema);
     return profile;
   }
+
+  toObject() {
+    const obj = {};
+    Object.assign(obj, this);
+    console.log(obj);
+    return obj;
+  }
 }
