@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
 import store from '../store';
+import Horizon from "@/views/Horizon";
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,12 @@ const routes = [
     path: '/onboarding',
     name: 'OnboardingSkills',
     component: OnboardingSkills
+  },
+
+  {
+    path: '/horizon',
+    name: 'Horizon',
+    component: Horizon
   },
 ]
 
