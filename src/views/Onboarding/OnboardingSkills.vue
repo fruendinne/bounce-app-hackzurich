@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters, mapActions } from 'vuex';
 
 export default {
     data () {
@@ -70,14 +70,30 @@ export default {
             this.SET_SKILLS(this.selected);
         }
     },
+    computed: {
+        ...mapGetters('user', [
+            'userProfile',
+        ]),
+        ...mapGetters('onboarding', [
+            'onboardingResults',
+        ]),
+    },
     methods: {
         ...mapMutations('onboarding', [
-            'SET_SKILLS'
+            'SET_SKILLS',
+        ]),
+        ...mapActions('user', [
+            'updateUserProfile',
         ]),
         remove (item) {
             this.selected.splice(this.selected.indexOf(item), 1);
             this.selected = [...this.selected]
         },
+        finishOnboarding() {
+            const userProfile = this.userProfile
+            Object.assign(userProfile, this.onboardingResults);
+
+        }
     },
 }
 </script>

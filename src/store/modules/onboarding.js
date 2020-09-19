@@ -4,10 +4,10 @@ const state = {
 };
 
 const getters = {
+  onboardingResult: (state) => state,
 };
 
 const actions = {
-
 };
 
 const mutations = {

@@ -14,6 +14,7 @@ const initialState = () => {
 
 const getters = {
   user: (store) => store.user,
+  userProfile: (store) => store.userProfile,
   error: (store) => store.error,
   isUserAuthenticated: (store) => !!store.user,
   isUserOnboarded: (store) => !!store.userProfile && store.userProfile.onboardingCompleted,
@@ -61,6 +62,28 @@ const actions = {
       const doc = await userProfileCollection
         .doc(state.user.uid)
         .get();
+
+      if (doc.exists) {
+        commit('SET_USER_PROFILE', UserProfile.fromSchema(doc.data()));
+      } else {
+        // No user profile yet
+        const newProfile = new UserProfile();
+        await userProfileCollection.doc(state.user.uid).set(newProfile.toObject());
+
+        commit('SET_USER_PROFILE', newProfile);
+      }
+    }
+    catch (e) {
+      commit('SET_ERROR', e);
+    }
+  },
+  async updateUserProfile({ commit, state }, payload) {
+    const userProfileCollection = firebase.firestore().collection('userProfile');
+
+    try {
+      const doc = await userProfileCollection
+          .doc(state.user.uid)
+          .set(payload);
 
       if (doc.exists) {
         commit('SET_USER_PROFILE', UserProfile.fromSchema(doc.data()));

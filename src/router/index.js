@@ -14,6 +14,7 @@ import Horizon from '../views/NewSession/Horizon';
 import store from '../store';
 import Partner from "@/views/NewSession/Partner";
 import Session from '../views/DrawingSession';
+import Profile from "../views/Profile";
 
 Vue.use(VueRouter);
 
@@ -43,7 +44,11 @@ const routes = [
     name: 'Horizon',
     component: Horizon
   },
-
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  },
   {
     path: '/partner',
     name: 'Partner',
