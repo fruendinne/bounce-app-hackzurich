@@ -1,14 +1,12 @@
 <template>
-    <v-container class="login-container background d-flex flex-column">
+    <v-container class="login-container background-graphic d-flex flex-column">
         <!-- LOGO -->
-        <v-row class="logo-container">
-            <v-col class="d-flex justify-center flex-column">
-                <img alt="skills" src="../../assets/logo.svg" />
-            </v-col>
-        </v-row>
         <v-row class="justify-center">
-        <v-col cols="8">
+        <v-col cols="8"  class="extramarginoliveoil">
+                <h3>choose your creative</h3>
+                <h2>skills</h2>
             <v-combobox
+                    class="mt-6"
                     :items="items"
                     chips
                     filled
@@ -16,15 +14,17 @@
                     label="Skills"
                     persistent-hint
                     multiple
-                    height="64"
                     solo
                     flat
                     outlined
             >
                 <template v-slot:selection="{ attrs, item, select, selected }">
                     <v-chip
-                            color="thirdiary"
-                            dark
+                            color="primary"
+                            text-color="secondary"
+                            light
+                            class="ma-2"
+
                             v-bind="attrs"
                             :input-value="selected"
                             close
@@ -38,11 +38,12 @@
             <v-row no-gutters>
                 <v-spacer></v-spacer>
             <v-btn
+                    class="secondary--text"
                     large
                     dark
                     right
 
-                    color="thirdiary"
+                    color="primary"
                     :loading="loading"
 
             >
@@ -79,5 +80,8 @@
             margin-bottom: 5rem;
             min-height: 216px;
         }
+    }
+    .extramarginoliveoil {
+        margin-top: 20%;
     }
 </style>
