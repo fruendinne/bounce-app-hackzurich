@@ -9,7 +9,6 @@ import GetFeedbackDash from "../views/GetFeedbackDash";
 import GiveFeedbackDash from "../views/GiveFeedbackDash";
 import Title from '../views/NewSession/Title';
 
-
 import store from '../store';
 import Session from '../views/Session';
 import Horizon from "@/views/NewSession/Horizon";
