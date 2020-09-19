@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login";
 import OnboardingSkills from "../views/Onboarding/OnboardingSkills";
+import GetFeedbackDash from "../views/GetFeedbackDash";
+import GiveFeedbackDash from "../views/GiveFeedbackDash";
 
 Vue.use(VueRouter)
 
@@ -21,6 +23,16 @@ const routes = [
     path: '/onboarding',
     name: 'OnboardingSkills',
     component: OnboardingSkills
+  },
+  {
+    path: '/getfeedbackdash',
+    name: 'GetFeedbackDash',
+    component: GetFeedbackDash
+  },
+  {
+    path: '/givefeedbackdash',
+    name: 'GiveFeedbackDash',
+    component: GiveFeedbackDash
   },
 ]
 
