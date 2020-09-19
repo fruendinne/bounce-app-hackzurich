@@ -7,48 +7,59 @@
         @update="updateCanvas"
     ></FabricCanvas>
 
-    <v-toolbar
-        dense
-        rounded
-        class="d-inline-block px-2"
-    >
-      <v-menu
-          v-model="colorPickerMenu"
-          offset-y
-          :close-on-content-click="false"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn icon tile v-on="on" v-bind="attrs"><v-icon :color="color">mdi-circle</v-icon></v-btn>
-        </template>
+    <v-row>
 
-        <template v-slot:default>
-          <v-color-picker class="ma-2" show-swatches v-model="color" mode="rgba"></v-color-picker>
-        </template>
-      </v-menu>
+      <v-col>
+        <v-toolbar
+            dense
+            rounded
+            class="d-inline-block px-2"
+        >
+          <v-menu
+              v-model="colorPickerMenu"
+              offset-y
+              :close-on-content-click="false"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon tile v-on="on" v-bind="attrs"><v-icon :color="color">mdi-circle</v-icon></v-btn>
+            </template>
 
-      <v-btn
-          icon
-          tile
-          @click="toggleDrawingMode"
-      ><v-icon>{{ drawingMode ? 'mdi-pencil-off' : 'mdi-pencil' }}</v-icon></v-btn>
+            <template v-slot:default>
+              <v-color-picker class="ma-2" show-swatches v-model="color" mode="rgba"></v-color-picker>
+            </template>
+          </v-menu>
 
-      <v-btn
-          icon
-          tile
-          @click="drawShape($refs.fabricCanvas.addRect)"
-      ><v-icon>mdi-square-outline</v-icon></v-btn>
-      <v-btn
-          icon
-          tile
-          @click="drawShape($refs.fabricCanvas.addOval)"
-      ><v-icon>mdi-circle-outline</v-icon></v-btn>
+          <v-btn
+              icon
+              tile
+              @click="toggleDrawingMode"
+          ><v-icon>{{ drawingMode ? 'mdi-pencil-off' : 'mdi-pencil' }}</v-icon></v-btn>
 
-      <v-btn
-          icon
-          tile
-          @click="saveSession"
-      ><v-icon>mdi-floppy</v-icon></v-btn>
-    </v-toolbar>
+          <v-btn
+              icon
+              tile
+              @click="drawShape($refs.fabricCanvas.addRect)"
+          ><v-icon>mdi-square-outline</v-icon></v-btn>
+          <v-btn
+              icon
+              tile
+              @click="drawShape($refs.fabricCanvas.addOval)"
+          ><v-icon>mdi-circle-outline</v-icon></v-btn>
+
+          <v-btn
+              icon
+              tile
+              @click="saveSession"
+          ><v-icon>mdi-floppy</v-icon></v-btn>
+        </v-toolbar>
+      </v-col>
+
+      <v-col cols="3" class="justify-end">
+        <v-card>
+          <v-card-text>Hallo</v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
