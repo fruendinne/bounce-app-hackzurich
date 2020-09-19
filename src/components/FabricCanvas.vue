@@ -4,11 +4,13 @@
 
 <script>
 import { fabric } from 'fabric';
+import Session from '../models/session';
 
 export default {
   name: 'FabricCanvas',
   props: {
-    color: String
+    color: String,
+    session: Session,
   },
   data() {
     return {
@@ -17,6 +19,10 @@ export default {
   },
   mounted() {
     this.fabricInstance = new fabric.Canvas('fabricCanvas');
+    this.fabricInstance.setBackgroundColor(
+        this.$vuetify.theme.currentTheme.background,
+    );
+
     this.setDimensions();
 
     this.fabricInstance.on('object:modified', this.dumpCanvas);

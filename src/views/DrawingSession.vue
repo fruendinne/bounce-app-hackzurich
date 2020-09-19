@@ -3,6 +3,7 @@
     <FabricCanvas
         ref="fabricCanvas"
         :color="color"
+        :session="session"
         @update="updateCanvas"
     ></FabricCanvas>
 
@@ -59,7 +60,6 @@ name: "Session",
   methods: {
     updateCanvas(e) {
       this.session.canvas = e;
-      console.log(this.session);
     }
   }
 }

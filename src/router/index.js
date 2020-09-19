@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
 import store from '../store';
-import Session from '../views/Session';
+import Session from '../views/DrawingSession';
 import Horizon from "@/views/Horizon";
 
 Vue.use(VueRouter);
