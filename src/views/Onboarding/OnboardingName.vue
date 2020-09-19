@@ -3,16 +3,16 @@
         <!-- LOGO -->
         <v-row class="justify-center">
             <v-col cols="9" class="px-8">
-                <h3>name and start your</h3>
-                <h2>new Session</h2>
+                <h3>we would love to call you by</h3>
+                <h2> your name</h2>
                 <v-row class="mt-10" justify="space-between" no-gutters>
                     <v-text-field
                         required
                         outlined
-                        label="title"
-                        :name="title"
-                        v-model="title"
-                ></v-text-field>
+                        label="name"
+                        :name="name"
+                        v-model="name"
+                    ></v-text-field>
                 </v-row>
                 <v-row no-gutters>
                     <v-spacer></v-spacer>
@@ -23,8 +23,9 @@
                             right
 
                             color="primary"
+
                     >
-                        Start collaborating
+                        Continue
                     </v-btn>
                 </v-row>
             </v-col>
@@ -38,17 +39,17 @@
     export default {
         data () {
             return {
-                title: "",
+                name: "",
             }
         },
         watch: {
-            title() {
-                this.SET_TITLE(this.title);
+            name() {
+                this.SET_NAME(this.name);
             }
         },
         methods: {
-            ...mapMutations('createSession', [
-                'SET_TITLE'
+            ...mapMutations('onboarding', [
+                'SET_NAME'
             ]),
         },
     }

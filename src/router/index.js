@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login";
 import OnboardingSkills from "../views/Onboarding/OnboardingSkills";
+import OnboardingName from "../views/Onboarding/OnboardingName";
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import GetFeedbackDash from "../views/GetFeedbackDash";
@@ -32,7 +33,11 @@ const routes = [
     name: 'OnboardingSkills',
     component: OnboardingSkills
   },
-
+  {
+    path: '/onboardingname',
+    name: 'OnboardingName',
+    component: OnboardingName
+  },
   {
     path: '/horizon',
     name: 'Horizon',

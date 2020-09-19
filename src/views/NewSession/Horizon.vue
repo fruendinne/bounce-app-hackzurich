@@ -8,24 +8,21 @@
 
           <v-row class="mt-9" justify="space-between">
 
-            <v-btn icon width="auto" height="auto">
-              <v-avatar color="quaternary" size="350">
-                <body class="horizon-text secondary--text normal">company-wide</body>
+            <v-btn
+                    icon
+                    width="auto" height="auto"
+                    v-for="(choice, index) in choices"
+                    :key="index"
+                    @click="selectChoice(choice)"
+            >
+              <v-avatar
+                      :color="choice.color" size="350"
+              >
+                <p class="horizon-text secondary--text normal"
+                   v-text="choice.text"
+                ></p>
               </v-avatar>
             </v-btn>
-
-            <v-btn icon width="auto" height="auto">
-              <v-avatar color="primary" size="350">
-                <span class="horizon-text secondary--text normal">around the globe</span>
-              </v-avatar>
-            </v-btn>
-
-            <v-btn icon width="auto" height="auto">
-              <v-avatar color="thirdiary" size="350">
-                <span class="horizon-text secondary--text normal">someone special</span>
-              </v-avatar>
-            </v-btn>
-
 
           </v-row>
             <v-row no-gutters>
@@ -37,6 +34,40 @@
 </template>
 
 <script>
+    import { mapMutations } from 'vuex';
+
+    const choices = [
+        {
+            text: 'company-wide',
+            color: 'primary'
+        },
+        {
+            text: 'around the globe',
+            color: 'thirdiary'
+        },
+        {
+            text: 'someone special',
+            color: 'quaternary'
+        },
+    ];
+
+    export default {
+        data () {
+            return {
+                horizon: "",
+                choices
+            }
+        },
+        methods: {
+            ...mapMutations('createSession', [
+                'SET_HORIZON'
+            ]),
+            selectChoice(choice) {
+                this.SET_HORIZON(choice.text);
+                this.$router.push('partner');
+            },
+        },
+    }
 </script>
 
 <style lang="scss">

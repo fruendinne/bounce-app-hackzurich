@@ -8,6 +8,7 @@
             <v-combobox
                     class="mt-10"
                     :items="items"
+                    v-model="selected"
                     chips
                     filled
                     clearable
@@ -44,8 +45,6 @@
                     right
 
                     color="primary"
-                    :loading="loading"
-
             >
                 Continue
             </v-btn>
@@ -56,20 +55,30 @@
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
-                items: ['UI Design','UX Design', 'Videography', 'Developer', 'Graphic Artist', 'Designer', 'Musician'],
-            }
-        },
+import { mapMutations } from 'vuex';
 
-        methods: {
-            remove (item) {
-                this.chips.splice(this.chips.indexOf(item), 1)
-                this.chips = [...this.chips]
-            },
+export default {
+    data () {
+        return {
+            items: ['UI Design','UX Design', 'Videography', 'Developer', 'Graphic Artist', 'Designer', 'Musician'],
+            selected: [],
+        }
+    },
+    watch: {
+        selected() {
+            this.SET_SKILLS(this.selected);
+        }
+    },
+    methods: {
+        ...mapMutations('onboarding', [
+            'SET_SKILLS'
+        ]),
+        remove (item) {
+            this.selected.splice(this.selected.indexOf(item), 1)
+            this.selected = [...this.selected]
         },
-    }
+    },
+}
 </script>
 
 <style lang="scss">
