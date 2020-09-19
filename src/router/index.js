@@ -37,9 +37,21 @@ const routes = [
     component: Horizon
   },
   {
-    path: '/session',
+    path: '/session/',
     name: 'Session',
     component: Session,
+    meta: {
+      hideAppBar: true,
+    },
+  },
+  {
+    path: '/session/:uuid',
+    name: 'Session',
+    component: Session,
+    meta: {
+      hideAppBar: true,
+    },
+    props: true,
   },
   {
     path: '/getfeedbackdash',

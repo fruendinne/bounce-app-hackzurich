@@ -12,6 +12,7 @@
     "fabric": "^4.1.0",
     "firebase": "^7.21.0",
     "minify-css-string": "^1.0.0",
+    "uuid": "^8.3.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11",

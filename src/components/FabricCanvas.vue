@@ -17,6 +17,11 @@ export default {
       fabricInstance: null,
     };
   },
+  watch: {
+    color() {
+      this.setBrushColor();
+    }
+  },
   mounted() {
     this.fabricInstance = new fabric.Canvas('fabricCanvas');
     this.fabricInstance.setBackgroundColor(
@@ -24,6 +29,7 @@ export default {
     );
 
     this.setDimensions();
+    this.setBrushColor();
 
     this.fabricInstance.on('object:modified', this.dumpCanvas);
     this.fabricInstance.on('object:added', this.dumpCanvas);
@@ -55,6 +61,13 @@ export default {
 
       this.fabricInstance.add(oval);
     },
+    setDrawingMode(isDrawingMode) {
+      this.fabricInstance.freeDrawingBrush.width = 10;
+      this.fabricInstance.isDrawingMode = isDrawingMode;
+    },
+    setBrushColor() {
+      this.fabricInstance.freeDrawingBrush.color = this.color;
+    },
     setDimensions() {
       this.fabricInstance.setDimensions({
         width: window.innerWidth,
@@ -63,6 +76,12 @@ export default {
     },
     dumpCanvas() {
       this.$emit('update', JSON.parse(JSON.stringify(this.fabricInstance)));
+    },
+    loadCanvas() {
+      console.log(this.session);
+      if (this.session && this.session.canvas) {
+        this.fabricInstance.loadFromJSON(this.session.canvas);
+      }
     }
   },
 };

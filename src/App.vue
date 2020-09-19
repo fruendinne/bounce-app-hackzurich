@@ -1,8 +1,7 @@
 <template>
   <v-app>
-    <v-container fluid>
+    <v-container fluid v-if="!this.$route.meta.hideAppBar">
         <v-row class="justify-center">
-
         <v-col cols="9">
             <v-app-bar flat color=transparent>
                 <img alt="bounce" src="./assets/bounce.svg" />
