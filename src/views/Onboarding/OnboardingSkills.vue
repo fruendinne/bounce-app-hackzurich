@@ -92,6 +92,9 @@ export default {
         async finishOnboarding() {
             const userProfile = this.userProfile
             Object.assign(userProfile, this.onboardingResult);
+
+            userProfile.onboardingCompleted = true;
+
             await this.updateUserProfile(userProfile.toObject());
             this.$router.push('/');
         }
