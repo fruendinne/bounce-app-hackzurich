@@ -6,7 +6,7 @@
             <v-app-bar flat color=transparent>
                 <img alt="bounce" src="./assets/bounce.svg" />
                 <v-spacer></v-spacer>
-                <v-btn  to="getfeedbackdash" text>get feedback</v-btn>
+                <v-btn  to="/" text>get feedback</v-btn>
                 <v-btn  to="givefeedbackdash" text>give feedback</v-btn>
                 <v-btn  to="givefeedbackdash" text>user profile</v-btn>
                 <v-btn  @click="$store.dispatch('user/signOut')" text>log out</v-btn>

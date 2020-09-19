@@ -1,3 +1,6 @@
+import * as firebase from 'firebase/app';
+import Session from '../../models/session';
+
 const state = {
   horizon: "",
   partners: [],
@@ -8,7 +11,28 @@ const getters = {
 };
 
 const actions = {
+  async startSession({ rootGetters }) {
+    const userProfileCollection = firebase.firestore().collection('userProfile');
+    const userId = rootGetters['user/user'].uid;
 
+    try {
+      const potentialPartners = await userProfileCollection
+          .where('skills', 'array-contains-any', state.partners)
+          .get();
+
+      const partnerId = potentialPartners.docs[0].id;
+
+      const session = new Session(
+          userId,
+          state.title.trim(),
+      )
+      session.partnerId = partnerId;
+
+      return session;
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 
 const mutations = {

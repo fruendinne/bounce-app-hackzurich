@@ -1,12 +1,14 @@
 import * as uuid from 'uuid';
 
 export default class Session {
-  constructor(owner) {
+  constructor(owner, name) {
     this.uid = uuid.v4();
 
     this.owner = owner;
+    this.name = name;
 
     this.canvas = {};
+    this.messages = [];
   }
 
   static fromSchema(schema) {
