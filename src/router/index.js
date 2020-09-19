@@ -5,12 +5,12 @@ import Login from "../views/Login";
 import OnboardingSkills from "../views/Onboarding/OnboardingSkills";
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import GetFeedbackDash from "../views/GetFeedbackDash";
-import GiveFeedbackDash from "../views/GiveFeedbackDash";
+import GetFeedbackDash from "../views/NewSession/GetFeedbackDash";
+import GiveFeedbackDash from "../views/NewSession/GiveFeedbackDash";
 
 import store from '../store';
 import Session from '../views/Session';
-import Horizon from "@/views/Horizon";
+import Horizon from "@/views/NewSession/Horizon";
 
 Vue.use(VueRouter);
 
