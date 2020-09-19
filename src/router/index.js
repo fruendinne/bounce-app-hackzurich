@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import GetFeedbackDash from "../views/GetFeedbackDash";
 import GiveFeedbackDash from "../views/GiveFeedbackDash";
+import Title from '../views/NewSession/Title';
 
 import store from '../store';
 import Session from '../views/Session';
@@ -58,6 +59,11 @@ const routes = [
     path: '/givefeedbackdash',
     name: 'GiveFeedbackDash',
     component: GiveFeedbackDash
+  },
+  {
+    path: '/sessiontitle',
+    name: 'Title',
+    component: Title
   },
 ]
 
