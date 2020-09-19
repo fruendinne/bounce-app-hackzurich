@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "fabric": "^4.1.0",
     "firebase": "^7.21.0",
     "minify-css-string": "^1.0.0",
     "vue": "^2.6.11",

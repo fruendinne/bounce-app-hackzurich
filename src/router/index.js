@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
 import store from '../store';
+import Session from '../views/Session';
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,11 @@ const routes = [
     name: 'OnboardingSkills',
     component: OnboardingSkills
   },
+  {
+    path: '/session',
+    name: 'Session',
+    component: Session,
+  },
 ]
 
 const router = new VueRouter({
@@ -37,8 +43,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
   const isUserAuthenticated = store.getters['user/isUserAuthenticated'];
-
-  console.log(from, to);
 
   if (requiresAuth && !isUserAuthenticated) {
     next('/login');
