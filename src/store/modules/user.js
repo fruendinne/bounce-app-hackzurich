@@ -3,6 +3,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import { UserProfile } from '../../models/user';
+import router from '../../router';
 
 const initialState = () => {
   return {
@@ -38,7 +39,7 @@ const actions = {
       commit('SET_USER', response.user);
       commit('SET_ERROR', null);
 
-      dispatch('loadUserProfile');
+      await dispatch('loadUserProfile');
     }
     catch (e) {
       commit('SET_ERROR', e);
@@ -47,16 +48,19 @@ const actions = {
   async signOut({ commit }) {
     try {
       await firebase.auth().signOut();
-    } catch (e) {
-      console.log(e);
-    } finally {
+
       commit('SET_USER', null);
       commit('SET_USER_PROFILE', null);
+
+      router.replace('/login');
+    } catch (e) {
+      console.log(e);
     }
   },
   async loadUserProfile({ commit, state }) {
     const userProfileCollection = firebase.firestore().collection('userProfile');
 
+    console.log(state);
     try {
       const doc = await userProfileCollection
         .doc(state.user.uid)
@@ -64,16 +68,24 @@ const actions = {
 
       if (doc.exists) {
         commit('SET_USER_PROFILE', UserProfile.fromSchema(doc.data()));
+
+        if (state.userProfile.onboardingCompleted) {
+          router.replace('/');
+        } else {
+          router.replace('/onboarding');
+        }
       } else {
         // No user profile yet
         const newProfile = new UserProfile();
         await userProfileCollection.doc(state.user.uid).set(newProfile.toObject());
 
         commit('SET_USER_PROFILE', newProfile);
+
+        router.replace('/onboarding');
       }
     }
     catch (e) {
-      commit('SET_ERROR', e);
+      // commit('SET_ERROR', e);
     }
   }
 };
@@ -86,7 +98,6 @@ const mutations = {
     state.userProfile = payload;
   },
   SET_ERROR(state, payload) {
-    state.user = null;
     state.error = payload;
   },
 };
