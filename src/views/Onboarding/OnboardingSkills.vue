@@ -39,13 +39,13 @@
             <v-row no-gutters>
                 <v-spacer></v-spacer>
             <v-btn
-                    to="getfeedbackdash"
                     class="secondary--text"
                     large
                     dark
                     right
 
                     color="primary"
+                    @click="finishOnboarding"
             >
                 Continue
             </v-btn>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters, mapActions } from 'vuex';
 
 export default {
     data () {
@@ -70,14 +70,31 @@ export default {
             this.SET_SKILLS(this.selected);
         }
     },
+    computed: {
+        ...mapGetters('user', [
+            'userProfile',
+        ]),
+        ...mapGetters('onboarding', [
+            'onboardingResult',
+        ]),
+    },
     methods: {
         ...mapMutations('onboarding', [
-            'SET_SKILLS'
+            'SET_SKILLS',
+        ]),
+        ...mapActions('user', [
+            'updateUserProfile',
         ]),
         remove (item) {
             this.selected.splice(this.selected.indexOf(item), 1);
             this.selected = [...this.selected]
         },
+        async finishOnboarding() {
+            const userProfile = this.userProfile
+            Object.assign(userProfile, this.onboardingResult);
+            await this.updateUserProfile(userProfile.toObject());
+            this.$router.push('/');
+        }
     },
 }
 </script>

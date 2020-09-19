@@ -46,7 +46,7 @@
                             to="sessiontitle"
                             color="primary"
                     >
-                        Bounce!
+                        Continue
                     </v-btn>
                 </v-row>
             </v-col>

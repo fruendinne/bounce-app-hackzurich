@@ -14,6 +14,7 @@ import 'firebase/auth';
 
 import Partner from "@/views/NewSession/Partner";
 import Session from '../views/DrawingSession';
+import Profile from "../views/Profile";
 
 Vue.use(VueRouter);
 
@@ -51,7 +52,11 @@ const routes = [
       requiresAuth: true,
     }
   },
-
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  },
   {
     path: '/partner',
     name: 'Partner',

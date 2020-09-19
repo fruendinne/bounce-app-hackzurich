@@ -15,6 +15,7 @@ const initialState = () => {
 
 const getters = {
   user: (store) => store.user,
+  userProfile: (store) => store.userProfile,
   error: (store) => store.error,
   isUserAuthenticated: (store) => !!store.user,
   isUserOnboarded: (store) => !!store.userProfile && store.userProfile.onboardingCompleted,
@@ -71,7 +72,7 @@ const actions = {
         if (state.userProfile.onboardingCompleted) {
           router.replace('/');
         } else {
-          router.replace('/onboarding');
+          router.replace('/onboardingname');
         }
       } else {
         // No user profile yet
@@ -80,8 +81,22 @@ const actions = {
 
         commit('SET_USER_PROFILE', newProfile);
 
-        router.replace('/onboarding');
+        router.replace('/onboardingname');
       }
+    }
+    catch (e) {
+      commit('SET_ERROR', e);
+    }
+  },
+  async updateUserProfile({ commit, state }, payload) {
+    const userProfileCollection = firebase.firestore().collection('userProfile');
+
+    try {
+      await userProfileCollection
+          .doc(state.user.uid)
+          .set(payload);
+
+      commit('SET_USER_PROFILE', UserProfile.fromSchema(payload));
     }
     catch (e) {
       commit('SET_ERROR', e);
