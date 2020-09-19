@@ -1,4 +1,7 @@
 import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
 import { UserProfile } from '../../models/user';
 
 const initialState = () => {
@@ -13,24 +16,29 @@ const getters = {
   user: (store) => store.user,
   error: (store) => store.error,
   isUserAuthenticated: (store) => !!store.user,
+  isUserOnboarded: (store) => !!store.userProfile && store.userProfile.onboardingCompleted,
 };
 
 const actions = {
-  async signUp({ commit }, payload) {
+  async signUpWithEmailAndPassword({ commit, dispatch }, payload) {
     try {
       const response = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password);
       commit('SET_USER', response.user);
       commit('SET_ERROR', null);
+
+      dispatch('loadUserProfile');
     }
     catch (e) {
       commit('SET_ERROR', e);
     }
   },
-  async signInWithEmailAndPassword({ commit }, payload) {
+  async signInWithEmailAndPassword({ commit, dispatch }, payload) {
     try {
       const response = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password);
       commit('SET_USER', response.user);
       commit('SET_ERROR', null);
+
+      dispatch('loadUserProfile');
     }
     catch (e) {
       commit('SET_ERROR', e);
@@ -39,6 +47,8 @@ const actions = {
   async signOut({ commit }) {
     try {
       await firebase.auth().signOut();
+    } catch (e) {
+      console.log(e);
     } finally {
       commit('SET_USER', null);
       commit('SET_USER_PROFILE', null);
@@ -57,7 +67,7 @@ const actions = {
       } else {
         // No user profile yet
         const newProfile = new UserProfile();
-        await userProfileCollection.doc(state.user.uid).set(newProfile);
+        await userProfileCollection.doc(state.user.uid).set(newProfile.toObject());
 
         commit('SET_USER_PROFILE', newProfile);
       }

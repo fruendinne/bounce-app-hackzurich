@@ -10,8 +10,8 @@ const LIGHT_THEME = {
   background: '#FFFDF8',
   primary: '#D4D6BF',
   secondary: '#2B2B2B',
-  thirdiary: '#E05141',
-  warning: '#DC5870',
+  thirdiary: '#DA8E7B',
+  quaternary: '#EEA095',
 };
 
 export default new Vuetify({

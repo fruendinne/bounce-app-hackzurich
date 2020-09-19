@@ -1,10 +1,10 @@
-export class UserProfile {
+export default class Session {
   constructor() {
-    this.onboardingCompleted = false;
+    this.canvas = {};
   }
 
   static fromSchema(schema) {
-    const profile = new UserProfile();
+    const profile = new Session() ;
     Object.assign(profile, schema);
     return profile;
   }
