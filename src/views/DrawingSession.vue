@@ -77,7 +77,7 @@ name: "Session",
     if (this.uuid) {
       this.loadSession(this.uuid);
     } else {
-      this.session = new Session();
+      this.session = new Session(this.$store.getters['user/user'].uid);
     }
   },
   watch: {
@@ -88,6 +88,7 @@ name: "Session",
   methods: {
     updateCanvas(e) {
       this.session.canvas = e;
+      this.saveSession();
     },
     toggleDrawingMode() {
       this.drawingMode = !this.drawingMode;
@@ -101,7 +102,7 @@ name: "Session",
       const session = this.session;
 
       sessionsCollection.doc(session.uid).set(session.toObject());
-      this.$router.push('/session/' + session.uid);
+      if (!this.uuid) this.$router.push('/session/' + session.uid);
     },
     async loadSession(uuid) {
       try {

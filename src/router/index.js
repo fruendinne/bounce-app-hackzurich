@@ -46,8 +46,8 @@ const routes = [
   },
 
   {
-    path: '/session/',
-    name: 'Session',
+    path: '/session',
+    name: 'StartSession',
     component: Session,
     meta: {
       hideAppBar: true,

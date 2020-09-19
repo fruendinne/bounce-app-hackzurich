@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container fluid v-if="!this.$route.meta.hideAppBar">
+    <v-container fluid v-if="!this.$route.meta.hideAppBar" :class="{ 'background-graphic': !this.$route.meta.hideAppBar}">
         <v-row class="justify-center">
         <v-col cols="9">
             <v-app-bar flat color=transparent>
@@ -14,14 +14,19 @@
         </v-row>
     </v-container>
     <v-main>
-      <router-view></router-view>
+      <route-transition-helper>
+        <router-view></router-view>
+      </route-transition-helper>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import RouteTransitionHelper from './components/RouteTransitionHelper';
+
 export default {
   name: 'App',
+  components: {RouteTransitionHelper},
 };
 </script>
 

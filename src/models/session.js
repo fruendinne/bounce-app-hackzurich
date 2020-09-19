@@ -1,8 +1,11 @@
 import * as uuid from 'uuid';
 
 export default class Session {
-  constructor() {
+  constructor(owner) {
     this.uid = uuid.v4();
+
+    this.owner = owner;
+
     this.canvas = {};
   }
 
