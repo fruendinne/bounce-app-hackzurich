@@ -11,11 +11,11 @@
                 <v-row no-gutters>
                     <v-card
                             v-for="i in 3" :key="i"
-                            class="mr-15 mt-15"
-                            height="150"
-                            width="350"
+                            class="mr-10 mt-4"
+                            height="110"
+                            width="275"
                             ripple
-                            outlined
+
                     >
                         <v-img alt="bounce" src="../assets/n.png" />
                     </v-card>
@@ -23,13 +23,13 @@
                 <v-row no-gutters>
                     <v-card
                             v-for="i in 3" :key="i"
-                            class="mr-15 mt-15"
-                            height="150"
-                            width="350"
+                            class="mr-10 mt-10"
+                            height="110"
+                            width="275"
                             ripple
-                            outlined
+
                     >
-                        <v-img alt="bounce" src="../assets/n.png" />
+                        <v-img alt="bounce" src="../assets/n.png"/>
                     </v-card>
                 </v-row>
             </v-col>

@@ -3,15 +3,15 @@
         <!-- LOGO -->
         <v-row class="justify-center">
             <v-col cols="9" class=" px-8">
-                <h3>bounce your idea off someone else and</h3>
+                <h3>bounce your idea off and</h3>
                 <h2>get feedback</h2>
                <v-row no-gutters class="mt-10">
                    <span>start new session</span>
                </v-row>
                 <v-row no-gutters>
-                    <v-card class="mr-4 mt-4 mb-4 d-flex align-center justify-center"
-                            height="150"
-                            width="350"
+                    <v-card class="mr-10 mt-4 mb-10 d-flex align-center justify-center"
+                            height="110"
+                            width="275"
                             v-ripple
                             outlined
                     >
@@ -26,9 +26,9 @@
                 <v-row no-gutters>
                     <v-card
                             v-for="i in 3" :key="i"
-                            class="mr-15 mt-4"
-                            height="150"
-                            width="350"
+                            class="mr-10 mt-4"
+                            height="110"
+                            width="275"
                             ripple
                             outlined
                     >
