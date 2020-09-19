@@ -39,6 +39,7 @@
             <v-row no-gutters>
                 <v-spacer></v-spacer>
             <v-btn
+                    to="getfeedbackdash"
                     class="secondary--text"
                     large
                     dark
@@ -74,7 +75,7 @@ export default {
             'SET_SKILLS'
         ]),
         remove (item) {
-            this.selected.splice(this.selected.indexOf(item), 1)
+            this.selected.splice(this.selected.indexOf(item), 1);
             this.selected = [...this.selected]
         },
     },

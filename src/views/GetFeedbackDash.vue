@@ -9,7 +9,9 @@
           <span>start new session</span>
         </v-row>
         <v-row no-gutters>
-          <v-card class="mr-10 my-10 d-flex align-center justify-center"
+          <v-card
+                  to="horizon"
+                  class="mr-10 my-10 d-flex align-center justify-center"
                   height="110"
                   width="275"
                   v-ripple

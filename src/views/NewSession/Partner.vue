@@ -43,7 +43,7 @@
                             large
                             dark
                             right
-
+                            to="sessiontitle"
                             color="primary"
                     >
                         Bounce!
@@ -74,9 +74,10 @@
                 'SET_PARTNERS'
             ]),
             remove(item) {
-                this.selected.splice(this.selected.indexOf(item), 1)
+                this.selected.splice(this.selected.indexOf(item), 1);
                 this.selected = [...this.selected]
             },
+
         },
     }
 </script>
