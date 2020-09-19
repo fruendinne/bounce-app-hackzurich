@@ -1,8 +1,10 @@
 import * as firebase from 'firebase/app';
+import { UserProfile } from '../../models/user';
 
 const initialState = () => {
   return {
     user: null,
+    userProfile: null,
     error: null,
   };
 };
@@ -40,12 +42,37 @@ const actions = {
     } finally {
       commit('SET_USER', null);
     }
+  },
+  async loadUserProfile({ commit, state }) {
+    const userProfileCollection = firebase.firestore().collection('userProfile');
+
+    try {
+      const doc = await userProfileCollection
+        .doc(state.user.uid)
+        .get();
+
+      if (doc.exists) {
+        commit('SET_USER_PROFILE', UserProfile.fromSchema(doc.data()));
+      } else {
+        // No user profile yet
+        const newProfile = new UserProfile();
+        await userProfileCollection.doc(state.user.uid).set(newProfile);
+
+        commit('SET_USER_PROFILE', newProfile);
+      }
+    }
+    catch (e) {
+      commit('SET_ERROR', e);
+    }
   }
 };
 
 const mutations = {
   SET_USER(state, payload) {
     state.user = payload;
+  },
+  SET_USER_PROFILE(state, payload) {
+    state.userProfile = payload;
   },
   SET_ERROR(state, payload) {
     state.user = null;
