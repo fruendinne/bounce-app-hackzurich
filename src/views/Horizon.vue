@@ -10,7 +10,7 @@
 
             <v-btn icon width="auto" height="auto">
               <v-avatar color="quaternary" size="224">
-                <span class="black--text normal">company-wide</span>
+                <span class="black--text normal">company-wide</span >
               </v-avatar>
             </v-btn>
 
