@@ -8,12 +8,11 @@ import 'firebase/auth';
 import GetFeedbackDash from "../views/GetFeedbackDash";
 import GiveFeedbackDash from "../views/GiveFeedbackDash";
 import Title from '../views/NewSession/Title';
+import Horizon from '../views/NewSession/Horizon';
 
 import store from '../store';
-import Horizon from "@/views/NewSession/Horizon";
 import Partner from "@/views/NewSession/Partner";
 import Session from '../views/DrawingSession';
-import Horizon from "@/views/Horizon";
 
 Vue.use(VueRouter);
 
