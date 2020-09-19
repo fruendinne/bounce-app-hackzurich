@@ -2,26 +2,34 @@
     <v-container class="login-container background-graphic d-flex flex-column">
         <!-- LOGO -->
         <v-row class="justify-center">
-        <v-col cols="8"  class="extramarginoliveoil">
+        <v-col cols="8">
                 <h3>choose your creative</h3>
                 <h2>horizon</h2>
-          <v-row>
+
+          <v-row class="mt-10" justify="space-between">
+
+            <v-btn icon width="auto" height="auto">
+              <v-avatar color="quaternary" size="224">
+                <span class="black--text normal">company-wide</span>
+              </v-avatar>
+            </v-btn>
+
+            <v-btn icon width="auto" height="auto">
+              <v-avatar color="primary" size="224">
+                <span class="black--text normal">around the globe</span>
+              </v-avatar>
+            </v-btn>
+
+            <v-btn icon width="auto" height="auto">
+              <v-avatar color="thirdiary" size="224">
+                <span class="black--text normal">someone special</span>
+              </v-avatar>
+            </v-btn>
+
 
           </v-row>
             <v-row no-gutters>
                 <v-spacer></v-spacer>
-            <v-btn
-                    class="secondary--text"
-                    large
-                    dark
-                    right
-
-                    color="primary"
-                    :loading="loading"
-
-            >
-                Continue
-            </v-btn>
             </v-row>
         </v-col>
         </v-row>
