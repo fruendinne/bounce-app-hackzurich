@@ -73,7 +73,6 @@
               text
 
               :disabled="!loginForm.valid"
-              :loading="loading"
 
               @click="signUp"
           >

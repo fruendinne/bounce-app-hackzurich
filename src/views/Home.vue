@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    Home
+    <v-btn @click="$store.dispatch('user/signOut')">Logout</v-btn>
   </v-container>
 </template>
 

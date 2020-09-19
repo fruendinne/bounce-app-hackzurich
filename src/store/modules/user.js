@@ -47,6 +47,8 @@ const actions = {
   async signOut({ commit }) {
     try {
       await firebase.auth().signOut();
+    } catch (e) {
+      console.log(e);
     } finally {
       commit('SET_USER', null);
       commit('SET_USER_PROFILE', null);

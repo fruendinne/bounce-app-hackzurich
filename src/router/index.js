@@ -50,11 +50,13 @@ router.beforeEach((to, from, next) => {
 })
 
 firebase.auth().onAuthStateChanged((user) => {
-  if (user && !store.getters['user/isUserAuthenticated']) {
+  if (user !== null && !store.getters['user/isUserAuthenticated']) {
     store.commit('user/SET_USER', user);
     store.dispatch('user/loadUserProfile');
 
     if (router.currentRoute.path !== '/') router.replace('/');
+  } else {
+    if (router.currentRoute.path !== '/login') router.push('/login');
   }
 });
 
