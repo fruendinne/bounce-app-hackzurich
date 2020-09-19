@@ -8,13 +8,14 @@
     ></FabricCanvas>
 
     <v-row>
-
       <v-col>
         <v-toolbar
             dense
             rounded
             class="d-inline-block px-2"
         >
+          <img alt="bounce" src="../assets/bounce.svg" class="mr-4"/>
+
           <v-menu
               v-model="colorPickerMenu"
               offset-y
