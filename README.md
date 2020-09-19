@@ -1,7 +1,24 @@
-# Bounce app
+# bounce-app-hackzurich
 
-## Development instructions
+## Project setup
+```
+yarn install
+```
 
-- Install dependencies in both the root and the `frontend` directories using `yarn install`.
-- Run the backend using `yarn start`
-- In a second terminal window, run the Vue development server by running `yarn serve` in the `frontend` directory.
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
