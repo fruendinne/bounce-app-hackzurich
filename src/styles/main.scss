@@ -1,0 +1,27 @@
+.theme--light.v-application {
+  background: transparent!important;
+}
+
+.background-graphic {
+  &:after, &:before{
+    content: "";
+    position: fixed;
+    top:0;
+    right:0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &:after {
+    z-index: -1;
+
+    background-image: url("/wobbels.svg");
+    background-size: contain;
+    background-position: right;
+  }
+
+  &:before {
+    z-index: -2;
+    background-color: #FFFDF8;
+  }
+}

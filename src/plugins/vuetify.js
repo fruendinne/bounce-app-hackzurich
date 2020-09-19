@@ -7,9 +7,11 @@ Vue.use(Vuetify);
 const debug = process.env.NODE_ENV !== 'production';
 
 const LIGHT_THEME = {
-  primary: '#5F24FB',
+  background: '#FFFDF8',
   secondary: '#2B2B2B',
-  warning: '#FBAC24',
+  primary: '#D4D6BF',
+  thirdiary: '#DD9F39',
+  warning: '#DC5870',
 };
 
 export default new Vuetify({
