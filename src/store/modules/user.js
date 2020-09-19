@@ -3,6 +3,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import { UserProfile } from '../../models/user';
+import router from '../../router';
 
 const initialState = () => {
   return {
@@ -14,6 +15,7 @@ const initialState = () => {
 
 const getters = {
   user: (store) => store.user,
+  userProfile: (store) => store.userProfile,
   error: (store) => store.error,
   isUserAuthenticated: (store) => !!store.user,
   isUserOnboarded: (store) => !!store.userProfile && store.userProfile.onboardingCompleted,
@@ -38,7 +40,7 @@ const actions = {
       commit('SET_USER', response.user);
       commit('SET_ERROR', null);
 
-      dispatch('loadUserProfile');
+      await dispatch('loadUserProfile');
     }
     catch (e) {
       commit('SET_ERROR', e);
@@ -47,11 +49,13 @@ const actions = {
   async signOut({ commit }) {
     try {
       await firebase.auth().signOut();
-    } catch (e) {
-      console.log(e);
-    } finally {
+
       commit('SET_USER', null);
       commit('SET_USER_PROFILE', null);
+
+      router.replace('/login');
+    } catch (e) {
+      console.log(e);
     }
   },
   async loadUserProfile({ commit, state }) {
@@ -64,13 +68,35 @@ const actions = {
 
       if (doc.exists) {
         commit('SET_USER_PROFILE', UserProfile.fromSchema(doc.data()));
+
+        if (state.userProfile.onboardingCompleted) {
+          router.replace('/');
+        } else {
+          router.replace('/onboardingname');
+        }
       } else {
         // No user profile yet
         const newProfile = new UserProfile();
         await userProfileCollection.doc(state.user.uid).set(newProfile.toObject());
 
         commit('SET_USER_PROFILE', newProfile);
+
+        router.replace('/onboardingname');
       }
+    }
+    catch (e) {
+      commit('SET_ERROR', e);
+    }
+  },
+  async updateUserProfile({ commit, state }, payload) {
+    const userProfileCollection = firebase.firestore().collection('userProfile');
+
+    try {
+      await userProfileCollection
+          .doc(state.user.uid)
+          .set(payload);
+
+      commit('SET_USER_PROFILE', UserProfile.fromSchema(payload));
     }
     catch (e) {
       commit('SET_ERROR', e);
@@ -86,7 +112,6 @@ const mutations = {
     state.userProfile = payload;
   },
   SET_ERROR(state, payload) {
-    state.user = null;
     state.error = payload;
   },
 };

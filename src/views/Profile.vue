@@ -3,24 +3,31 @@
     <!-- LOGO -->
     <v-row class="justify-center">
       <v-col cols="9" class="px-8">
-        <h3>bounce your idea off and</h3>
-        <h2>get feedback</h2>
-        <v-row no-gutters class="mt-10">
-          <span>start new session</span>
+        <h3>It's nice to see you</h3>
+        <h2>user.profile.name</h2>
+        <v-row class="mt-10" justify="space-between" no-gutters>
+          <v-text-field
+                  required
+                  outlined
+                  label="name"
+                  :name="name"
+                  v-model="name"
+          ></v-text-field>
         </v-row>
         <v-row no-gutters>
-          <v-card
-                  to="horizon"
-                  class="mr-10 my-10 d-flex align-center justify-center"
-                  height="110"
-                  width="275"
-                  v-ripple
-                  outlined
+          <v-spacer></v-spacer>
+          <v-btn
+                  to="onboarding"
+                  class="secondary--text"
+                  large
+                  dark
+                  right
+
+                  color="primary"
+
           >
-            <v-avatar color=transparent>
-              <v-icon size="150" color=secondary>mdi-plus</v-icon>
-            </v-avatar>
-          </v-card>
+            Continue
+          </v-btn>
         </v-row>
         <v-row no-gutters>
           <span>review completed sessions</span>

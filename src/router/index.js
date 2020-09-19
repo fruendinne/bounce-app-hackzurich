@@ -1,27 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import Login from "../views/Login";
 import OnboardingSkills from "../views/Onboarding/OnboardingSkills";
 import OnboardingName from "../views/Onboarding/OnboardingName";
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
 import GetFeedbackDash from "../views/GetFeedbackDash";
 import GiveFeedbackDash from "../views/GiveFeedbackDash";
 import Title from '../views/NewSession/Title';
 import Horizon from '../views/NewSession/Horizon';
 
-import store from '../store';
+// import store from '../store';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+
 import Partner from "@/views/NewSession/Partner";
 import Session from '../views/DrawingSession';
+import Profile from "../views/Profile";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/getfeedbackdash',
   },
   {
     path: '/login',
@@ -31,23 +31,39 @@ const routes = [
   {
     path: '/onboarding',
     name: 'OnboardingSkills',
-    component: OnboardingSkills
+    component: OnboardingSkills,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/onboardingname',
     name: 'OnboardingName',
-    component: OnboardingName
+    component: OnboardingName,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/horizon',
     name: 'Horizon',
-    component: Horizon
+    component: Horizon,
+    meta: {
+      requiresAuth: true,
+    }
   },
-
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  },
   {
     path: '/partner',
     name: 'Partner',
-    component: Partner
+    component: Partner,
+    meta: {
+      requiresAuth: true,
+    }
   },
 
   {
@@ -56,6 +72,7 @@ const routes = [
     component: Session,
     meta: {
       hideAppBar: true,
+      requiresAuth: true,
     },
   },
   {
@@ -64,23 +81,33 @@ const routes = [
     component: Session,
     meta: {
       hideAppBar: true,
+      requiresAuth: true,
     },
     props: true,
   },
   {
     path: '/getfeedbackdash',
     name: 'GetFeedbackDash',
-    component: GetFeedbackDash
+    component: GetFeedbackDash,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/givefeedbackdash',
     name: 'GiveFeedbackDash',
-    component: GiveFeedbackDash
+    component: GiveFeedbackDash,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/sessiontitle',
     name: 'Title',
-    component: Title
+    component: Title,
+    meta: {
+      requiresAuth: true,
+    }
   },
 ]
 
@@ -92,27 +119,16 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-  const isUserAuthenticated = store.getters['user/isUserAuthenticated'];
+  const currentUser = firebase.auth().currentUser; // store.getters['user/isUserAuthenticated'];
 
-  if (requiresAuth && !isUserAuthenticated) {
+  if (requiresAuth && !currentUser) {
     next('/login');
-  } else if (to.name === 'Login' && isUserAuthenticated) {
-    next('/');
-  } else if (requiresAuth && isUserAuthenticated) {
+  } else if (to.name === 'Login' && currentUser) {
+    next('/getfeedbackdash');
+  } else if (requiresAuth && currentUser) {
     next();
   } else {
     next();
-  }
-})
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (user !== null && !store.getters['user/isUserAuthenticated']) {
-    store.commit('user/SET_USER', user);
-    store.dispatch('user/loadUserProfile');
-
-    if (router.currentRoute.path === '/login') router.replace('/');
-  } else {
-    if (router.currentRoute.path !== '/login') router.push('/login');
   }
 });
 

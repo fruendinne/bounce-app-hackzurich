@@ -24,7 +24,7 @@
 
                             color="primary"
                     >
-                        Start collaborating
+                        Bounce!
                     </v-btn>
                 </v-row>
             </v-col>

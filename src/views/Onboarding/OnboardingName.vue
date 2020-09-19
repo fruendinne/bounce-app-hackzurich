@@ -17,6 +17,7 @@
                 <v-row no-gutters>
                     <v-spacer></v-spacer>
                     <v-btn
+                            to="onboarding"
                             class="secondary--text"
                             large
                             dark
