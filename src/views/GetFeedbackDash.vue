@@ -2,7 +2,7 @@
     <v-container fluid class="fill-height background-graphic">
         <!-- LOGO -->
         <v-row class="justify-center">
-            <v-col cols="9" class="extramarginoliveoil px-8">
+            <v-col cols="9" class=" px-8">
                 <h3>bounce your idea off someone else and</h3>
                 <h2>get feedback</h2>
                <v-row no-gutters class="mt-10">
