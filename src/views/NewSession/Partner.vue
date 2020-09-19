@@ -47,7 +47,7 @@
                     :loading="loading"
 
             >
-                Continue
+                Bounce!
             </v-btn>
             </v-row>
         </v-col>
