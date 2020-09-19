@@ -10,6 +10,7 @@ const initialState = () => {
 const getters = {
   user: (store) => store.user,
   error: (store) => store.error,
+  isUserAuthenticated: (store) => !!store.user,
 };
 
 const actions = {
