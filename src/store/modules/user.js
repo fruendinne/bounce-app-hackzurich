@@ -41,6 +41,7 @@ const actions = {
       await firebase.auth().signOut();
     } finally {
       commit('SET_USER', null);
+      commit('SET_USER_PROFILE', null);
     }
   },
   async loadUserProfile({ commit, state }) {
