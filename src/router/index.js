@@ -8,7 +8,10 @@ import GiveFeedbackDash from "../views/GiveFeedbackDash";
 import Title from '../views/NewSession/Title';
 import Horizon from '../views/NewSession/Horizon';
 
-import store from '../store';
+// import store from '../store';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+
 import Partner from "@/views/NewSession/Partner";
 import Session from '../views/DrawingSession';
 import Profile from "../views/Profile";
@@ -116,7 +119,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-  const currentUser = store.getters['user/isUserAuthenticated'];
+  const currentUser = firebase.auth().currentUser; // store.getters['user/isUserAuthenticated'];
 
   if (requiresAuth && !currentUser) {
     next('/login');
@@ -127,6 +130,6 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-})
+});
 
 export default router

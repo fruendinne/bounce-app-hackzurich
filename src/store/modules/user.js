@@ -61,7 +61,6 @@ const actions = {
   async loadUserProfile({ commit, state }) {
     const userProfileCollection = firebase.firestore().collection('userProfile');
 
-    console.log(state);
     try {
       const doc = await userProfileCollection
         .doc(state.user.uid)
