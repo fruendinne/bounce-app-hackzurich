@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="fill-height">
     <!-- LOGO -->
-    <v-row class="justify-center">
+    <v-row class="justify-center" v-if="userProfile">
       <v-col cols="9" class="px-8">
         <h3>It's nice to see you</h3>
         <h2 v-text="userProfile.name"></h2>
@@ -12,8 +12,7 @@
           <v-text-field
                   required
                   outlined
-                  :label=this.userProfile.name
-                  :name="name"
+                  label="Name"
                   v-model="name"
           ></v-text-field>
         </v-row>
@@ -24,9 +23,8 @@
                   large
                   dark
                   right
-
                   color="primary"
-
+                  @click="saveName"
           >
             save
           </v-btn>
@@ -37,7 +35,7 @@
         <v-combobox
                 class="mt-5"
                 :items="items"
-                :v-model="selected"
+                v-model="selected"
                 chips
                 clearable
                 label="Skills"
@@ -71,8 +69,9 @@
                   large
                   dark
                   right
-
-                  color="primary">
+                  color="primary"
+                  @click="saveSkills"
+          >
             save
           </v-btn>
         </v-row>
@@ -82,7 +81,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data () {
@@ -92,42 +91,37 @@ export default {
       name: "",
     }
   },
-  watch: {
-    selected() {
-      this.SET_SKILLS(this.selected);
-    },
-    name() {
-      this.SET_NAME(this.name);
-    }
-  },
   computed: {
     ...mapGetters('user', [
       'userProfile',
     ]),
-    ...mapGetters('onboarding', [
-      'onboardingResult',
-    ]),
+  },
+  watch: {
+    userProfile() {
+      if (this.userProfile !== null) {
+        this.selected = this.userProfile.skills;
+        this.name = this.userProfile.name;
+      }
+    }
   },
   methods: {
-    ...mapMutations('onboarding', [
-      'SET_SKILLS',
-    ]),
     ...mapActions('user', [
       'updateUserProfile',
-    ]),
-    ...mapMutations('onboarding', [
-      'SET_NAME'
     ]),
     remove (item) {
       this.selected.splice(this.selected.indexOf(item), 1);
       this.selected = [...this.selected]
     },
-    async finishOnboarding() {
+    async saveName() {
       const userProfile = this.userProfile
-      Object.assign(userProfile, this.onboardingResult);
+      userProfile.name = this.name;
       await this.updateUserProfile(userProfile.toObject());
-      this.$router.push('/');
     },
+    async saveSkills() {
+      const userProfile = this.userProfile
+      userProfile.skills = this.selected;
+      await this.updateUserProfile(userProfile.toObject());
+    }
   },
 }
 </script>
