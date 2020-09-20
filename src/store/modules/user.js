@@ -69,9 +69,9 @@ const actions = {
       if (doc.exists) {
         commit('SET_USER_PROFILE', UserProfile.fromSchema(doc.data()));
 
-        if (state.userProfile.onboardingCompleted) {
+        if (router.currentRoute.name === 'Login' && state.userProfile.onboardingCompleted) {
           router.replace('/');
-        } else {
+        } else if (!state.userProfile.onboardingCompleted) {
           router.replace('/onboardingname');
         }
       } else {

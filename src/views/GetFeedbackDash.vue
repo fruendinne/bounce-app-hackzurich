@@ -22,7 +22,7 @@
             </v-avatar>
           </v-card>
         </v-row>
-        <v-row no-gutters>
+        <v-row no-gutters v-if="mySessions.length > 0">
           <span>review completed sessions</span>
         </v-row>
         <v-row no-gutters>
@@ -35,7 +35,7 @@
               outlined
               :to="{ name: 'Session', params: { uuid: session.uid }}"
           >
-            <v-card-text v-text="session.uid"></v-card-text>
+            <v-card-text v-text="session.name"></v-card-text>
             <!--            <v-img alt="bounce" src="../assets/n.png"/>-->
           </v-card>
         </v-row>

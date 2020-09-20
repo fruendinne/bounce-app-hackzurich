@@ -36,6 +36,7 @@ export default {
     this.fabricInstance.on('object:removed', this.dumpCanvas);
 
     window.onresize = () => this.setDimensions();
+    document.onpaste = this.onImagePaste;
   },
   methods: {
     addRect() {
@@ -60,6 +61,25 @@ export default {
       });
 
       this.fabricInstance.add(oval);
+    },
+    onImagePaste(e) {
+      const items = e.clipboardData.items;
+      e.preventDefault();
+      e.stopPropagation();
+
+      //Loop through files
+      items.forEach((item) => {
+        if (item.type.indexOf('image') === -1) return;
+
+        const imageData = item.getAsFile();
+        const reader = new FileReader();
+        reader.readAsDataURL(imageData);
+        reader.onload = () => {
+          fabric.Image.fromURL(reader.result, (img) => {
+            this.fabricInstance.add(img);
+          });
+        };
+      });
     },
     setDrawingMode(isDrawingMode) {
       this.fabricInstance.freeDrawingBrush.width = 10;

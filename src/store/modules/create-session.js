@@ -17,6 +17,7 @@ const actions = {
 
     try {
       const potentialPartners = await userProfileCollection
+          //.where('uid', '!=', userId)
           .where('skills', 'array-contains-any', state.partners)
           .get();
 

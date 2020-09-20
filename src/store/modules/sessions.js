@@ -11,7 +11,11 @@ const getters = {
   mySessions: (state, getters, rootState, rootGetters) => {
     const userId = rootGetters['user/user'].uid;
     return state.sessions.filter((session) => session.owner === userId);
-  }
+  },
+  assignedSessions: (state, getters, rootState, rootGetters) => {
+    const userId = rootGetters['user/user'].uid;
+    return state.sessions.filter((session) => session.partnerId === userId);
+  },
 };
 
 const actions = {
