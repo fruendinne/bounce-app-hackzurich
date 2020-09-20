@@ -60,7 +60,7 @@
         </v-toolbar>
       </v-col>
 
-      <v-col cols="3" class="justify-end">
+      <v-col cols="3" >
         <v-card v-for="(message, index) in messages"
                 :key="index"
         >
@@ -69,6 +69,7 @@
           </v-card-text>
         </v-card>
         <v-text-field
+            autocomplete="off"
             v-model="message"
             label="Message"
             type="text"
