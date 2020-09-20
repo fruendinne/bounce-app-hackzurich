@@ -7,17 +7,15 @@
                 <h2>horizon</h2>
 
           <v-row class="mt-9" justify="space-between">
-
             <v-btn
                     icon
                     width="auto" height="auto"
                     v-for="(choice, index) in choices"
                     :key="index"
                     @click="selectChoice(choice)"
+                    class="mt-5"
             >
-              <v-avatar
-                      :color="choice.color" size="350"
-              >
+              <v-avatar :color="choice.color" size="350">
                 <p class="horizon-text secondary--text normal"
                    v-text="choice.text"
                 ></p>

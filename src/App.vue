@@ -4,12 +4,15 @@
         <v-row class="justify-center">
         <v-col cols="9">
             <v-app-bar flat color=transparent>
-                <img alt="bounce" src="./assets/bounce.svg" />
+                <router-link to="/"><img alt="bounce" src="./assets/bounce.svg" /></router-link>
                 <v-spacer></v-spacer>
-                <v-btn  to="getfeedbackdash" text>get feedback</v-btn>
-                <v-btn  to="givefeedbackdash" text>give feedback</v-btn>
-                <v-btn  to="profile" text>user profile</v-btn>
-                <v-btn  @click="$store.dispatch('user/signOut')" text>log out</v-btn>
+
+                <div v-if="$store.getters['user/isUserAuthenticated']">
+                  <v-btn  to="getfeedbackdash" text>get feedback</v-btn>
+                  <v-btn  to="givefeedbackdash" text>give feedback</v-btn>
+                  <v-btn  to="profile" text>user profile</v-btn>
+                  <v-btn  @click="$store.dispatch('user/signOut')" text>log out</v-btn>
+                </div>
             </v-app-bar>
         </v-col>
         </v-row>
