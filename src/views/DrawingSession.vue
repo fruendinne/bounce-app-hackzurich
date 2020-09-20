@@ -59,29 +59,25 @@
         </v-toolbar>
       </v-col>
 
-<!--      <v-col cols="3" class="justify-end">-->
-<!--        <v-card class="py-0">-->
-<!--          <v-card-text>-->
-<!--            <v-text-field-->
-<!--                v-model="message"-->
-<!--                label="Add a comment"-->
-<!--                type="text"-->
-<!--                id="chat"-->
-<!--                :append-outer-icon="'mdi-send'"-->
-<!--                @click:append-outer="sendMessage"-->
-<!--                @keydown.enter="sendMessage"-->
-<!--                hide-details-->
-<!--            >-->
-<!--            </v-text-field>-->
-<!--          </v-card-text>-->
-<!--        </v-card>-->
-
+<!--      <v-col cols="3" >-->
 <!--        <v-card v-for="(message, index) in messages"-->
 <!--                :key="index"-->
-<!--                class="mt-4"-->
 <!--        >-->
-<!--          <v-card-text v-text="message"></v-card-text>-->
+<!--          <v-card-text>-->
+<!--            <v-row cols="1" v-text="message"></v-row>-->
+<!--          </v-card-text>-->
 <!--        </v-card>-->
+<!--        <v-text-field-->
+<!--            autocomplete="off"-->
+<!--            v-model="message"-->
+<!--            label="Message"-->
+<!--            type="text"-->
+<!--            id="chat"-->
+<!--            :append-outer-icon="'mdi-send'"-->
+<!--            @click:append-outer="sendMessage"-->
+<!--            @keydown.enter="sendMessage"-->
+<!--        >-->
+<!--        </v-text-field>-->
 <!--      </v-col>-->
     </v-row>
   </v-container>
